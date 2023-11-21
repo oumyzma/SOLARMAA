@@ -11,10 +11,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>SOLARMAA</ApplicationTitle>
+		<ApplicationTitle>SOLARMA</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.solarmaa</ApplicationId>
+		<ApplicationId>com.companyname.solarma</ApplicationId>
 		<ApplicationIdGuid>ada5bb24-ce1a-4748-9161-fed6606f3232</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -31,7 +31,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\Images\sun.png" ForegroundFile="Resources\Images\sun.png" Color="#D7572B" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />

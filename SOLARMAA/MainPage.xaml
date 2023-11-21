@@ -10,15 +10,15 @@
             VerticalOptions="Center">
 
             <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="sun.png"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Hello, World!"
+                Text="Tester votre emplacement"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
+                
                 HorizontalOptions="Center" />
 
             <Label
