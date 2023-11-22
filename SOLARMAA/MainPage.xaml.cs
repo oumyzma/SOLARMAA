@@ -1,5 +1,3 @@
-﻿using System;
-using System.Numerics;
 namespace SOLARMAA
 {
     public partial class MainPage : ContentPage
@@ -15,6 +13,10 @@ namespace SOLARMAA
 
         private void OnClicked(object sender, EventArgs e)
         {
+            Gps _gps = new Gps();
+            var a = await _gps.GetCachedLocation();
+            await DisplayAlert("alert", a, "OK");
+
             ProgressBar progressBar = this.FindByName<ProgressBar>("myProgressBar");
             double currentValue = progressBar.Progress;
             currentValue += 0.1;
