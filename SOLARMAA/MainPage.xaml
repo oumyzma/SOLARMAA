@@ -36,11 +36,10 @@
                     Source="angle.png"
                     HeightRequest="50"
                     HorizontalOptions="Center"/>
-                    <Label
-                    Text="43°"
-                    SemanticProperties.HeadingLevel="Level2"
-                    FontSize="18"
-                    HorizontalOptions="Center" />
+                    <Label x:Name="InclinationLabel"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    FontSize="18"/>
                 </VerticalStackLayout>
                    
                 <VerticalStackLayout
