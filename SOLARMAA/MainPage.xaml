@@ -19,21 +19,93 @@
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"/>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            
+            <HorizontalStackLayout
+                
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    MaximumWidthRequest="300">
+                <VerticalStackLayout
+                    MinimumWidthRequest="100"
+                    MaximumWidthRequest="100"
+                    >
+                    <Image
+                    Source="angle.png"
+                    HeightRequest="50"
+                    HorizontalOptions="Center"/>
+                    <Label
+                    Text="43°"
+                    SemanticProperties.HeadingLevel="Level2"
+                    FontSize="18"
+                    HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                   
+                <VerticalStackLayout
+                    MinimumWidthRequest="100"
+                    MaximumWidthRequest="100"
+                    >
+                    <Image
+                    Source="gps.png"
+                    HeightRequest="50"
+                    HorizontalOptions="Center" />
+
+                    <Label
+                    Text="Rouen"
+                    SemanticProperties.HeadingLevel="Level2"
+                    FontSize="18"
+                    HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout
+                    MaximumWidthRequest="100"
+                    MinimumWidthRequest="100"
+                    >
+                    <Image
+                    Source="boussole.png"
+                    HeightRequest="50"
+                    HorizontalOptions="Center" />
+                    
+                    
+                    <Label
+                    Text="SOO"
+                    SemanticProperties.HeadingLevel="Level2"
+                    FontSize="18"
+                    HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+
+            <HorizontalStackLayout
+                HorizontalOptions="FillAndExpand"
+                Spacing="50"
+                BackgroundColor="#DA7B27"
+                MinimumHeightRequest="50"
+                >
+                <VerticalStackLayout>
+                    <Label
+                        TextColor="#FFF"
+                        Text="Voici le taux de rendement estimé"
+                        SemanticProperties.HeadingLevel="Level2"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                     />
+                    <Label
+                        x:Name="Valeur"
+                        Text="10%"
+                        TextColor="#FFF"
+                        SemanticProperties.HeadingLevel="Level2"
+                        FontSize="60"
+                        HorizontalOptions="Center" />
+                    <ProgressBar 
+                        x:Name="myProgressBar"
+                        Progress="0.1" 
+                        ProgressColor="Orange"/>
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>
