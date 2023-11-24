@@ -8,60 +8,44 @@ namespace SOLARMAA.Services
 {
     public class Gps
     {
-        public async Task<string> GetCachedLocation()
+        private CancellationTokenSource _cancelTokenSource;
+        private bool _isCheckingLocation;
+
+        public async Task<String> GetCurrentLocation()
         {
             try
             {
-                Location location = await Geolocation.Default.GetLastKnownLocationAsync();
+                _isCheckingLocation = true;
+
+                GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+
+                _cancelTokenSource = new CancellationTokenSource();
+
+                Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
 
                 if (location != null)
                     return $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}";
             }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Handle not supported on device exception
-            }
-            catch (FeatureNotEnabledException fneEx)
-            {
-                // Handle not enabled on device exception
-            }
-            catch (PermissionException pEx)
-            {
-                // Handle permission exception
-            }
+            // Catch one of the following exceptions:
+            //   FeatureNotSupportedException
+            //   FeatureNotEnabledException
+            //   PermissionException
             catch (Exception ex)
             {
                 // Unable to get location
+                return "Erreur";
             }
-
-            return "None";
+            finally
+            {
+                _isCheckingLocation = false;
+            }
+            return "Erreur2";
         }
 
-        public async Task<string> GetCityFromCoordinates(double latitude, double longitude)
+        public void CancelRequest()
         {
-            try
-            {
-                // Utiliser le service de géocodage inversé pour obtenir le nom de la ville
-                var placemarks = await Geocoding.GetPlacemarksAsync(latitude, longitude);
-                var city = placemarks?.FirstOrDefault()?.Locality;
-
-                if (!string.IsNullOrEmpty(city))
-                    return city;
-                else
-                    return "Nom de la ville non disponible";
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                // Gérer l'exception de fonctionnalité non prise en charge sur l'appareil
-            }
-            catch (Exception ex)
-            {
-                // Gérer l'exception générale
-            }
-
-            return "Impossible de déterminer la localisation";
+            if (_isCheckingLocation && _cancelTokenSource != null && _cancelTokenSource.IsCancellationRequested == false)
+                _cancelTokenSource.Cancel();
         }
-
-
     }
 }

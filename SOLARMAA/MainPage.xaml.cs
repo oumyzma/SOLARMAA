@@ -6,17 +6,20 @@ namespace SOLARMAA
     {
         int count = 0;
 
+
         public MainPage()
         {
             InitializeComponent();
 
         }
 
-        private async void CounterBtn_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
+            base.OnAppearing();
             Gps _gps = new Gps();
-            var a = await _gps.GetCachedLocation();
+            var a = await _gps.GetCurrentLocation();
             await DisplayAlert("alert", a, "OK");
         }
+
     }
 }
