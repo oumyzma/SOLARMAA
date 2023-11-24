@@ -1,5 +1,3 @@
-﻿using SOLARMAA.Services;
-
 namespace SOLARMAA
 {
     public partial class MainPage : ContentPage
@@ -10,7 +8,8 @@ namespace SOLARMAA
         public MainPage()
         {
             InitializeComponent();
-
+            
+            OrientationSensor.ReadingChanged += OnOrientationSensorReadingChanged;
         }
 
         protected override async void OnAppearing()
