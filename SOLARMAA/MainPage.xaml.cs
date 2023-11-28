@@ -1,6 +1,5 @@
 using System;
 using System.Numerics;
-using SOLARMAA.Services;
 namespace SOLARMAA
 
 {
@@ -12,7 +11,7 @@ namespace SOLARMAA
         public MainPage()
         {
             InitializeComponent();
-            
+
             OrientationSensor.ReadingChanged += OnOrientationSensorReadingChanged;
         }
 
@@ -23,8 +22,13 @@ namespace SOLARMAA
             // Démarrer l'écoute de l'orientation lorsque la page est affichée
             OrientationSensor.Start(SensorSpeed.UI);
             Gps _gps = new Gps();
-            var a = await _gps.GetCurrentLocation();
-            await DisplayAlert("alert", a, "OK");
+            /*var a = await _gps.GetCurrentLocation();
+            await DisplayAlert("alert", a, "OK");*/
+            var a = await _gps.GetCurrentCity();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Ville.Text = a;
+            });
 
 
         }
@@ -40,7 +44,9 @@ namespace SOLARMAA
                 {
                     InclinationLabel.Text = $"{inclinationDegrees:F2}°";
                 });
+
             }
+
         }
 
         private double GetInclinationDegrees(Quaternion quaternion)
@@ -54,7 +60,13 @@ namespace SOLARMAA
 
             return inclinationDegrees;
         }
-        
+        private void OnOrientationSensorReadingChanged(object sender, OrientationSensorChangedEventArgs e)
+        {
+            if (e.Reading != null)
+            {
+                // Obtenez l'inclinaison du téléphone en degrés
+                double inclinationDegrees = GetInclinationDegrees(e.Reading.Orientation);
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
