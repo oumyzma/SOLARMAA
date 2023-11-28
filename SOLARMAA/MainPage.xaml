@@ -36,9 +36,9 @@
                     HeightRequest="50"
                     HorizontalOptions="Center"/>
                     <Label x:Name="InclinationLabel"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="18"/>
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="18"/>
                 </VerticalStackLayout>
                    
                 <VerticalStackLayout
