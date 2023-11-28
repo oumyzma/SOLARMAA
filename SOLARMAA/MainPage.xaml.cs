@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Android.Telephony;
 using SOLARMAA.Services;
 namespace SOLARMAA
 
@@ -51,7 +52,7 @@ namespace SOLARMAA
             // Extraire l'angle d'inclinaison de la matrice de rotation
             double inclinationRadians = Math.Asin(rotationMatrix.M23);
             double inclinationDegrees = inclinationRadians * (180.0 / Math.PI);
-
+            Affichage(inclinationDegrees);
             return inclinationDegrees;
         }
         
@@ -61,6 +62,28 @@ namespace SOLARMAA
 
             // Arrêter l'écoute de l'orientation lorsque la page n'est plus affichée
             OrientationSensor.Stop();
+        }
+        async private void Affichage(double inclinationDegrees)
+        {
+            PourcentageHome.Text = $"{32}°";
+            await ProgressBarHome.ProgressTo(inclinationDegrees/100, 200, Easing.Linear);
+            if (inclinationDegrees > 75)
+            {
+                ProgressBarHome.ProgressColor = Colors.Red;
+            }
+            else if (inclinationDegrees > 50)
+            {
+                ProgressBarHome.ProgressColor = Colors.Orange;
+            }
+            else if (inclinationDegrees > 25)
+            {
+                ProgressBarHome.ProgressColor = Colors.Yellow;
+            }
+            else
+            {
+                ProgressBarHome.ProgressColor = Colors.GreenYellow;
+            }
+
         }
     }
 }
