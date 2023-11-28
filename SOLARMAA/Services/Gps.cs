@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SOLARMAA.Services
+namespace SOLARMAA
 {
     public class Gps
     {
+         
         private CancellationTokenSource _cancelTokenSource;
         private bool _isCheckingLocation;
 
@@ -25,11 +26,15 @@ namespace SOLARMAA.Services
 
                 if (location != null)
                     return $"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}";
+                /*Ville.Text = $"{inclinationDegrees:F2}°";*/
+
             }
+
             // Catch one of the following exceptions:
             //   FeatureNotSupportedException
             //   FeatureNotEnabledException
             //   PermissionException
+
             catch (Exception ex)
             {
                 // Unable to get location
@@ -40,6 +45,8 @@ namespace SOLARMAA.Services
                 _isCheckingLocation = false;
             }
             return "Erreur2";
+
+            
         }
 
 
@@ -61,7 +68,7 @@ namespace SOLARMAA.Services
                     // Utilise l'API d'OSM pour obtenir le nom de la ville
                     string cityName = await GetCityNameFromOSMAsync(latitude, longitude);
 
-                    return $"La ville est : {cityName}";
+                    return $"{cityName}";
                 }
             }
             catch (Exception ex)
@@ -80,7 +87,7 @@ namespace SOLARMAA.Services
                 using (HttpClient client = new HttpClient())
                 {
                     // Utilise l'API de géocodage inversé d'OSM
-                    string apiUrl = $"https://nominatim.openstreetmap.org/reverse?format=json&lat={latitude}&lon={longitude}";
+                    string apiUrl = $"https://nominatim.openstreetmap.org/reverse?format=json&lat={latitude.ToString().Replace(",",".")}&lon={longitude.ToString().Replace(",", ".")}";
 
                     HttpResponseMessage response = await client.GetAsync(apiUrl);
 
@@ -90,7 +97,7 @@ namespace SOLARMAA.Services
 
                         dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
 
-                        string cityName = data.address.city;
+                        string cityName = data.address.village;
 
                         return cityName;
                     }

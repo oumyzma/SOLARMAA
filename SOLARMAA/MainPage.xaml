@@ -51,9 +51,11 @@
                     HorizontalOptions="Center" />
 
                     <Label
+                        x:Name="Ville"
                     Text="Rouen"
                     SemanticProperties.HeadingLevel="Level2"
-                    FontSize="18"
+                    Padding="10 0"
+                    FontSize="10"
                     HorizontalOptions="Center" />
                 </VerticalStackLayout>
                 
