@@ -19,7 +19,7 @@ namespace SOLARMAA
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            // Démarrer l'écoute de l'orientation lorsque la page est affichée
+            // DÃ©marrer l'Ã©coute de l'orientation lorsque la page est affichÃ©e
             OrientationSensor.Start(SensorSpeed.UI);
             Gps _gps = new Gps();
             /*var a = await _gps.GetCurrentLocation();
@@ -36,13 +36,13 @@ namespace SOLARMAA
         {
             if (e.Reading != null)
             {
-                // Obtenez l'inclinaison du téléphone en degrés
+                // Obtenez l'inclinaison du tÃ©lÃ©phone en degrÃ©s
                 double inclinationDegrees = GetInclinationDegrees(e.Reading.Orientation);
 
-                // Mettez à jour l'étiquette avec l'inclinaison actuelle
+                // Mettez Ã  jour l'Ã©tiquette avec l'inclinaison actuelle
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    InclinationLabel.Text = $"{inclinationDegrees:F2}°";
+                    InclinationLabel.Text = $"{inclinationDegrees:F2}Â°";
                 });
 
             }
@@ -60,12 +60,18 @@ namespace SOLARMAA
 
             return inclinationDegrees;
         }
+        private void OnOrientationSensorReadingChanged(object sender, OrientationSensorChangedEventArgs e)
+        {
+            if (e.Reading != null)
+            {
+                // Obtenez l'inclinaison du tÃ©lÃ©phone en degrÃ©s
+                double inclinationDegrees = GetInclinationDegrees(e.Reading.Orientation);
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
 
-            // Arrêter l'écoute de l'orientation lorsque la page n'est plus affichée
+            // ArrÃªter l'Ã©coute de l'orientation lorsque la page n'est plus affichÃ©e
             OrientationSensor.Stop();
         }
     }

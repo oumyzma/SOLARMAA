@@ -36,9 +36,9 @@
                     HeightRequest="50"
                     HorizontalOptions="Center"/>
                     <Label x:Name="InclinationLabel"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="18"/>
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="18"/>
                 </VerticalStackLayout>
                    
                 <VerticalStackLayout
@@ -83,6 +83,7 @@
                 Spacing="50"
                 BackgroundColor="#DA7B27"
                 MinimumHeightRequest="50"
+                Padding="20"
                 >
                 <VerticalStackLayout>
                     <Label
@@ -93,15 +94,16 @@
                         HorizontalOptions="Center"
                      />
                     <Label
-                        x:Name="Valeur"
+                        x:Name="PourcentageHome"
                         Text="10%"
                         TextColor="#FFF"
                         SemanticProperties.HeadingLevel="Level2"
                         FontSize="60"
                         HorizontalOptions="Center" />
                     <ProgressBar 
-                        x:Name="myProgressBar"
+                        x:Name="ProgressBarHome"
                         Progress="0.1" 
+                        HeightRequest="100"
                         ProgressColor="Orange"/>
                 </VerticalStackLayout>
 
