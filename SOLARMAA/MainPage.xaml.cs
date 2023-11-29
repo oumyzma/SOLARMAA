@@ -39,11 +39,11 @@ namespace SOLARMAA
             if (_compasModel != null)
                 // Met à jour le modèle avec l'angle du compas
                 _compasModel = _sensor.CompassText;
-          
-            
+
+            _viewModel.CompasModel = _compasModel;
           
             var a = await _gps.GetCurrentCity();
-            Device.BeginInvokeOnMainThread(() =>
+            MainThread.BeginInvokeOnMainThread(() =>
             {
                 Ville.Text = a;
             });
