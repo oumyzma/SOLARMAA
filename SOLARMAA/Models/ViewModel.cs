@@ -6,7 +6,7 @@ public class ViewModel : INotifyPropertyChanged
 {
     // Propriétés
     private CompasModel _compasModel;
-    
+
 
     // Constructeur
     public ViewModel(CompasModel compasModel)

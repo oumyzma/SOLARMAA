@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿﻿using System.Numerics;
 using SOLARMAA.Models;
 
 namespace SOLARMAA.Services;
@@ -15,7 +15,7 @@ public class Sensor : ISensor
 {
     // Propriétés
     public CompasModel CompassText { get; private set; }
-    
+
 
     // Méthodes pour activer ou désactiver le compas
     public bool ToggleCompass()
@@ -41,7 +41,7 @@ public class Sensor : ISensor
         // Compass not supported on device
         return false;
     }
-    
+
 
     // Méthodes pour mettre à jour les valeurs du compas
     private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)

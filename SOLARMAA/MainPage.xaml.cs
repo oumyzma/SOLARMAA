@@ -36,17 +36,19 @@ namespace SOLARMAA
             OrientationSensor.Start(SensorSpeed.UI);
           
             Gps _gps = new Gps();
-            if (_compasModel != null)
-                // Met à jour le modèle avec l'angle du compas
-                _compasModel = _sensor.CompassText;
-          
             
-          
             var a = await _gps.GetCurrentCity();
             Device.BeginInvokeOnMainThread(() =>
             {
                 Ville.Text = a;
             });
+            
+            if (_compasModel != null)
+                // Met à jour le modèle avec l'angle du compas
+                _compasModel = _sensor.CompassText;
+          
+            
+            _viewModel.CompasModel = _compasModel;
 
 
         }
