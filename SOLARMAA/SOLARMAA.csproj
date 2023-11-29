@@ -53,6 +53,7 @@
 
 	<ItemGroup>
 	  <Compile Remove="Gps.cs" />
+	  <Compile Remove="Models\OrientationModel.cs" />
 	</ItemGroup>
 
 </Project>
