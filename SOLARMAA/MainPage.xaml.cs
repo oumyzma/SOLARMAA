@@ -1,9 +1,7 @@
 
-using System;
 using System.Numerics;
 using SOLARMAA.Models;
 using SOLARMAA.Services;
-using Android.Telephony;
 
 namespace SOLARMAA
 {
