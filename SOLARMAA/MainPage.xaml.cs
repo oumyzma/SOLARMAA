@@ -1,9 +1,8 @@
-
+namespace SOLARMAA
 using System.Numerics;
 using SOLARMAA.Models;
 using SOLARMAA.Services;
 
-namespace SOLARMAA
 
 {
     public partial class MainPage : ContentPage
@@ -37,14 +36,18 @@ namespace SOLARMAA
             OrientationSensor.Start(SensorSpeed.UI);
           
             Gps _gps = new Gps();
-            var a = await _gps.GetCurrentLocation();
-            await DisplayAlert("alert", a, "OK");
             if (_compasModel != null)
                 // Met à jour le modèle avec l'angle du compas
                 _compasModel = _sensor.CompassText;
           
             
-            _viewModel.CompasModel = _compasModel;
+          
+            var a = await _gps.GetCurrentCity();
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Ville.Text = a;
+            });
+
 
         }
         private void OnOrientationSensorReadingChanged(object sender, OrientationSensorChangedEventArgs e)
@@ -62,6 +65,7 @@ namespace SOLARMAA
                 });
 
             }
+
         }
 
         private double GetInclinationDegrees(Quaternion quaternion)
@@ -75,6 +79,12 @@ namespace SOLARMAA
 
             return inclinationDegrees;
         }
+        private void OnOrientationSensorReadingChanged(object sender, OrientationSensorChangedEventArgs e)
+        {
+            if (e.Reading != null)
+            {
+                // Obtenez l'inclinaison du téléphone en degrés
+                double inclinationDegrees = GetInclinationDegrees(e.Reading.Orientation);
 
         protected override void OnDisappearing()
         {
