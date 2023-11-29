@@ -46,17 +46,19 @@
                     MaximumWidthRequest="100"
                     >
                     <Image
-                    Source="gps.png"
-                    HeightRequest="50"
-                    HorizontalOptions="Center" />
+                        Source="gps.png"
+                        HeightRequest="50"
+                        HorizontalOptions="Center" 
+                    />
 
                     <Label
                         x:Name="Ville"
-                    Text="Rouen"
-                    SemanticProperties.HeadingLevel="Level2"
-                    Padding="10 0"
-                    FontSize="10"
-                    HorizontalOptions="Center" />
+                        Text="Rouen"
+                        SemanticProperties.HeadingLevel="Level2"
+                        Padding="0, 10"
+                        FontSize="10"
+                        HorizontalOptions="Center"
+                        />
                 </VerticalStackLayout>
                 
                 <VerticalStackLayout
@@ -104,7 +106,16 @@
                         x:Name="ProgressBarHome"
                         Progress="0.1" 
                         HeightRequest="100"
-                        ProgressColor="Orange"/>
+                        ProgressColor="Orange" 
+                    />
+                    <Label
+                        x:Name="TexteRendement"
+                        WidthRequest="300"
+                        Text="10%"
+                        TextColor="#FFF"
+                        SemanticProperties.HeadingLevel="Level2"
+                        FontSize="20"
+                        HorizontalOptions="Center" />
                 </VerticalStackLayout>
 
             </HorizontalStackLayout>
