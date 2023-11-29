@@ -36,17 +36,19 @@ namespace SOLARMAA
             OrientationSensor.Start(SensorSpeed.UI);
           
             Gps _gps = new Gps();
-            if (_compasModel != null)
-                // Met à jour le modèle avec l'angle du compas
-                _compasModel = _sensor.CompassText;
-
-            _viewModel.CompasModel = _compasModel;
-          
+            
             var a = await _gps.GetCurrentCity();
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 Ville.Text = a;
             });
+            
+            if (_compasModel != null)
+                // Met à jour le modèle avec l'angle du compas
+                _compasModel = _sensor.CompassText;
+          
+            
+            _viewModel.CompasModel = _compasModel;
 
 
         }
@@ -91,7 +93,7 @@ namespace SOLARMAA
         async private void Affichage(double inclinationDegrees)
         {
             PourcentageHome.Text = $"{inclinationDegrees/90*100:F0}";
-            await ProgressBarHome.ProgressTo(inclinationDegrees / 90, 300, Easing.Linear);
+            await ProgressBarHome.ProgressTo(inclinationDegrees / 90, 300, Easing.CubicIn);
             if (inclinationDegrees > 80)
             {
                 ProgressBarHome.ProgressColor = Colors.Cyan;

@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+﻿﻿using System.Numerics;
 using SOLARMAA.Models;
 
 namespace SOLARMAA.Services
@@ -38,10 +38,10 @@ namespace SOLARMAA.Services
                 return true;
             }
 
-            // Compass not supported on device
-            return false;
-        }
-
+        // Compass not supported on device
+        return false;
+    }
+    
 
         // Méthodes pour mettre à jour les valeurs du compas
         private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
