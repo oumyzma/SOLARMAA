@@ -1,12 +1,11 @@
+
 using System;
-using System.Numerics;
-namespace SOLARMAA
 using System.Numerics;
 using SOLARMAA.Models;
 using SOLARMAA.Services;
 using Android.Telephony;
 
-
+namespace SOLARMAA
 {
     public partial class MainPage : ContentPage
     {
