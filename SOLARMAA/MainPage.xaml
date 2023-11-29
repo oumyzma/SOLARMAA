@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="using:SOLARMAA.Models"
              x:Class="SOLARMAA.MainPage">
 
     <ScrollView>
@@ -59,7 +60,7 @@
                     HorizontalOptions="Center" />
                 </VerticalStackLayout>
                 
-                <VerticalStackLayout
+                <VerticalStackLayout x:DataType="models:ViewModel"
                     MaximumWidthRequest="100"
                     MinimumWidthRequest="100"
                     >
@@ -67,13 +68,12 @@
                     Source="boussole.png"
                     HeightRequest="50"
                     HorizontalOptions="Center" />
-                    
-                    
-                    <Label
-                    Text="SOO"
-                    SemanticProperties.HeadingLevel="Level2"
-                    FontSize="18"
-                    HorizontalOptions="Center" />
+
+                        <!-- Labels pour la position du compas -->
+                        <!--<Label Text="{Binding CompasModel.Angle, StringFormat='Angle : {0:F0}'}"
+                               HorizontalOptions="Center" />-->
+                        <Label Text="{Binding CompasModel.AngleText, StringFormat='{0}'}"
+                               HorizontalOptions="Center" />
                 </VerticalStackLayout>
             </HorizontalStackLayout>
 

@@ -1,4 +1,4 @@
-﻿
+using SOLARMAA;
 using Microsoft.Extensions.Logging;
 
 namespace SOLARMAA
@@ -15,6 +15,7 @@ namespace SOLARMAA
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<ISensor, Sensor>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
