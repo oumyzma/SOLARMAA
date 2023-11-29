@@ -68,9 +68,9 @@
                     HorizontalOptions="Center" />
 
                         <!-- Labels pour la position du compas -->
-                        <Label Text="{Binding CompasModel.Angle, StringFormat='Angle : {0}'}"
-                               HorizontalOptions="Center" />
-                        <Label Text="{Binding CompasModel.AngleText, StringFormat='Direction : {0}'}"
+                        <!--<Label Text="{Binding CompasModel.Angle, StringFormat='Angle : {0:F0}'}"
+                               HorizontalOptions="Center" />-->
+                        <Label Text="{Binding CompasModel.AngleText, StringFormat='{0}'}"
                                HorizontalOptions="Center" />
                 </VerticalStackLayout>
             </HorizontalStackLayout>

@@ -58,7 +58,7 @@ namespace SOLARMAA
                 // Update the label with the current inclination
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    InclinationLabel.Text = $"{inclinationDegrees:F2}°";
+                    InclinationLabel.Text = $"{inclinationDegrees:F0}°";
                 });
 
             }
