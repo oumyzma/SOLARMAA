@@ -1,19 +1,34 @@
 using System;
 using System.Numerics;
-using Android.Telephony;
 namespace SOLARMAA
+using System.Numerics;
+using SOLARMAA.Models;
+using SOLARMAA.Services;
+using Android.Telephony;
+
 
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
+        private static CompasModel _compasModel = new(0);
+        
 
-
+        private readonly ISensor _sensor = MauiApplication.Current.Services.GetService<ISensor>();
+        private readonly ViewModel _viewModel = new(_compasModel);
+        
         public MainPage()
         {
             InitializeComponent();
 
             OrientationSensor.ReadingChanged += OnOrientationSensorReadingChanged;
+            
+            // Vérifie si le GPS est supporté sur le téléphone et affiche une alerte si ce n'est pas le cas sinon démarre le GPS
+            if (!_sensor.ToggleCompass()) DisplayAlert("Alert", "Compass not supported on device", "OK");
+            // Vérifie si le compas est supporté sur le téléphone et affiche une alerte si ce n'est pas le cas sinon démarre le compas
+            
+            // Définit le BindingContext de la page sur le ViewModel
+            BindingContext = _viewModel;
         }
 
 
@@ -22,9 +37,14 @@ namespace SOLARMAA
             base.OnAppearing();
             // Démarrer l'écoute de l'orientation lorsque la page est affichée
             OrientationSensor.Start(SensorSpeed.UI);
+          
             Gps _gps = new Gps();
-            /*var a = await _gps.GetCurrentLocation();
-            await DisplayAlert("alert", a, "OK");*/
+            if (_compasModel != null)
+                // Met à jour le modèle avec l'angle du compas
+                _compasModel = _sensor.CompassText;
+          
+            
+          
             var a = await _gps.GetCurrentCity();
             Device.BeginInvokeOnMainThread(() =>
             {
@@ -37,13 +57,14 @@ namespace SOLARMAA
         {
             if (e.Reading != null)
             {
-                // Obtenez l'inclinaison du téléphone en degrés
+                // Obtain the phone's tilt in degrees
                 double inclinationDegrees = GetInclinationDegrees(e.Reading.Orientation);
+          
 
-                // Mettez à jour l'étiquette avec l'inclinaison actuelle
-                Device.BeginInvokeOnMainThread(() =>
+                // Update the label with the current inclination
+                MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    InclinationLabel.Text = $"{inclinationDegrees:F2}°";
+                    InclinationLabel.Text = $"{inclinationDegrees:F0}°";
                 });
 
             }
